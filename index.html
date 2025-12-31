@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contábil Express | Abertura de Empresas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- VARIÁVEIS E RESET --- */
+      :root {
+        --cor-fundo: #0a0a0a;
+        --cor-secundaria: #1c1c1c;
+        --cor-destaque: #ff6600; /* Laranja Oficial */
+        --cor-destaque-hover: #ff8533;
+        --cor-texto-titulo: #ffffff;
+        --cor-texto-paragrafo: #cccccc;
+        --transicao: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+      }
+
+      body {
+        background-color: var(--cor-fundo);
+        color: var(--cor-texto-paragrafo);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Montserrat", sans-serif;
+        color: var(--cor-texto-titulo);
+        font-weight: 700;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* --- BOTÕES --- */
+      .btn-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--cor-destaque);
+        color: #fff;
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: var(--transicao);
+        box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+        gap: 10px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-cta:hover {
+        background-color: var(--cor-destaque-hover);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 102, 0, 0.5);
+      }
+
+      /* --- HEADER --- */
+      header {
+        padding: 20px 0;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-img {
+        max-height: 55px;
+        width: auto;
+      }
+
+      .header-btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+
+      /* --- HERO SECTION --- */
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        /* Fundo com imagem e sobreposição escura */
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(10, 10, 10, 0.8) 100%
+          ),
+          url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2426&q=80");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        max-width: 650px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        line-height: 1.1;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 span {
+        color: var(--cor-destaque);
+      }
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        max-width: 500px;
+      }
+
+      /* --- SEÇÃO: A EMPRESA (NOVA) --- */
+      .sobre {
+        padding: 100px 0;
+        background-color: #0f0f0f; /* Fundo levemente diferente */
+        border-bottom: 1px solid #222;
+      }
+
+      .sobre-container {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .sobre-text {
+        flex: 1;
+      }
+      .sobre-img {
+        flex: 1;
+        position: relative;
+      }
+
+      .sobre-img img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid #333;
+      }
+
+      /* Detalhe visual laranja na imagem */
+      .sobre-img::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 100px;
+        height: 100px;
+        border-top: 5px solid var(--cor-destaque);
+        border-left: 5px solid var(--cor-destaque);
+        z-index: 0;
+      }
+
+      .sobre-text h4 {
+        color: var(--cor-destaque);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .sobre-text h2 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      .sobre-text p {
+        margin-bottom: 15px;
+        font-size: 1rem;
+        color: #ccc;
+      }
+
+      /* Box de departamentos */
+      .lista-areas {
+        margin-top: 25px;
+        padding: 20px;
+        background: #1a1a1a;
+        border-left: 3px solid var(--cor-destaque);
+        border-radius: 4px;
+      }
+
+      .lista-areas strong {
+        color: #fff;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .lista-areas span {
+        font-size: 0.9rem;
+        color: #ddd;
+      }
+
+      /* --- SEÇÃO VANTAGENS --- */
+      .vantagens {
+        padding: 80px 0;
+        background-color: var(--cor-fundo);
+      }
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .section-title h2 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+      }
+
+      .grid-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+      }
+
+      .card {
+        background-color: var(--cor-secundaria);
+        padding: 35px 25px;
+        border-radius: 12px;
+        border-bottom: 3px solid transparent;
+        transition: var(--transicao);
+      }
+
+      .card:hover {
+        border-bottom: 3px solid var(--cor-destaque);
+        transform: translateY(-5px);
+      }
+
+      .card-icon {
+        font-size: 2.2rem;
+        color: var(--cor-destaque);
+        margin-bottom: 15px;
+      }
+      .card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+
+      /* --- SEÇÃO COMO FUNCIONA (Passos Corrigidos) --- */
+      .como-funciona {
+        padding: 80px 0;
+        background-color: #0f0f0f;
+        border-top: 1px solid #222;
+      }
+
+      .steps-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        gap: 30px;
+      }
+
+      /* Configuração para alinhar número EM CIMA do texto */
+      .step {
+        flex: 1;
+        min-width: 280px;
+        text-align: center;
+        padding: 20px;
+        display: flex;
+        flex-direction: column; /* Empilha verticalmente */
+        align-items: center;
+        position: relative;
+      }
+
+      .step-number {
+        font-size: 4rem;
+        font-weight: 800;
+        color: var(--cor-destaque);
+        opacity: 1;
+        line-height: 1;
+        margin-bottom: 15px;
+        position: static; /* Garante que não fique atrás do texto */
+        display: block;
+      }
+
+      .step h3 {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+        color: #fff;
+      }
+      .step p {
+        font-size: 0.95rem;
+        color: #ccc;
+      }
+
+      /* Seta visual (Apenas Desktop) */
+      @media (min-width: 900px) {
+        .step:not(:last-child)::after {
+          content: "\f061";
+          font-family: "Font Awesome 6 Free";
+          font-weight: 900;
+          position: absolute;
+          right: -15px;
+          top: 70px;
+          color: #333;
+          font-size: 1.5rem;
+        }
+      }
+
+      /* --- PÚBLICO ALVO --- */
+      .publico {
+        padding: 60px 0;
+      }
+      .chips-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .chip {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px 20px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        background-color: #000;
+        padding: 40px 0 20px;
+        border-top: 2px solid var(--cor-destaque);
+        text-align: center;
+      }
+
+      /* --- WHATSAPP FLUTUANTE --- */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background-color: #25d366;
+        color: #fff;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        transition: var(--transicao);
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+
+      /* --- MEDIA QUERIES (CELULAR) --- */
+      @media (max-width: 768px) {
+        /* Remove Botão Header no Mobile */
+        .header-btn {
+          display: none !important;
+        }
+
+        /* Centraliza Logo no Mobile */
+        header .container {
+          justify-content: center;
+        }
+        .logo-img {
+          max-height: 45px;
+        }
+
+        /* Hero Mobile */
+        .hero {
+          text-align: center;
+          justify-content: center;
+          padding-top: 80px;
+        }
+        .hero-content {
+          margin: 0 auto;
+        }
+        .hero h1 {
+          font-size: 2.1rem;
+        }
+
+        /* Seção Sobre Mobile */
+        .sobre-container {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .sobre-img::before {
+          display: none;
+        } /* Remove detalhe laranja */
+
+        /* Passos */
+        .steps-container {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .step::after {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <img src="logo.png" alt="Contábil Express" class="logo-img" />
+
+        <a href="https://wa.me/5500000000000" class="btn-cta header-btn">
+          <i class="fab fa-whatsapp"></i> <span>Falar Agora</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Abra seu CNPJ em tempo recorde e <span>sem burocracia</span>.</h1>
+          <p>
+            A burocracia é nossa, o lucro é seu. Transformamos seu negócio em
+            realidade com agilidade.
+          </p>
+          <a
+            href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20abrir%20minha%20empresa!"
+            class="btn-cta"
+          >
+            QUERO ABRIR MINHA EMPRESA <i class="fas fa-arrow-right"></i>
+          </a>
+          <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8">
+            <i
+              class="fas fa-check-circle"
+              style="color: var(--cor-destaque); margin-right: 5px"
+            ></i>
+            Processo 100% Digital e Seguro
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sobre">
+      <div class="container">
+        <div class="sobre-container">
+          <div class="sobre-img">
+            <img
+              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80"
+              alt="Equipe Contábil Express"
+            />
+          </div>
+
+          <div class="sobre-text">
+            <h4>A Empresa</h4>
+            <h2>De empreendedores para empreendedores.</h2>
+            <p>
+              A <strong>Contábil Express</strong> foi criada em 2019 com um
+              desejo claro: ajudar outros empreendedores a crescer. Entendemos
+              suas dores porque também somos donos de negócio.
+            </p>
+            <p>
+              Atendemos de forma especializada, oferecendo um atendimento
+              humanizado e consultivo. Nosso objetivo é transformar suas ideias
+              em grandes negócios e consolidar sua marca no mercado.
+            </p>
+
+            <div class="lista-areas">
+              <strong>Atuação Especializada:</strong>
+              <span>Contábil • Financeiro • Fiscal • Pessoal • Societário</span>
+            </div>
+
+            <div style="margin-top: 25px">
+              <a
+                href="https://wa.me/5500000000000"
+                style="
+                  color: var(--cor-destaque);
+                  font-weight: 700;
+                  border-bottom: 2px solid var(--cor-destaque);
+                "
+              >
+                Falar com um especialista
+                <i class="fas fa-arrow-right" style="font-size: 0.8rem"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vantagens">
+      <div class="container">
+        <div class="section-title">
+          <h2>Chega de perder dinheiro na Pessoa Física</h2>
+          <p>Atuar sem CNPJ pode custar até 27,5% dos seus ganhos.</p>
+        </div>
+        <div class="grid-cards">
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-wallet"></i></div>
+            <h3>Economia Real</h3>
+            <p>
+              Enquadramos você no melhor regime tributário para pagar o mínimo
+              permitido por lei.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>100% Digital</h3>
+            <p>
+              Esqueça cartórios. Envie os documentos pelo WhatsApp e nós
+              cuidamos de toda a papelada.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Velocidade Express</h3>
+            <p>
+              Enquanto a contabilidade tradicional demora, nossa meta é liberar
+              seu CNPJ em tempo recorde.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="como-funciona">
+      <div class="container">
+        <div class="section-title">
+          <h2>Do CPF ao CNPJ em 3 Passos</h2>
+        </div>
+        <div class="steps-container">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Diagnóstico</h3>
+            <p>
+              Você clica no botão e fala com nosso especialista no WhatsApp para
+              alinharmos os detalhes.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Documentação</h3>
+            <p>
+              Você envia fotos dos documentos básicos. Tudo pelo celular, sem
+              sair de casa.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Empresa Aberta</h3>
+            <p>
+              Nós processamos tudo e entregamos seu CNPJ e Contrato Social
+              prontos para faturar.
+            </p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px">
+          <a href="https://wa.me/5500000000000" class="btn-cta">
+            INICIAR PROCESSO AGORA
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="publico">
+      <div class="container">
+        <div class="section-title">
+          <h2>Especialistas em atender:</h2>
+        </div>
+        <div class="chips-container">
+          <div class="chip">
+            <i class="fas fa-laptop-code"></i> Desenvolvedores & TI
+          </div>
+          <div class="chip">
+            <i class="fas fa-user-md"></i> Médicos e Dentistas
+          </div>
+          <div class="chip">
+            <i class="fas fa-bullhorn"></i> Marketing Digital
+          </div>
+          <div class="chip"><i class="fas fa-hard-hat"></i> Engenheiros</div>
+          <div class="chip">
+            <i class="fas fa-store"></i> Comércio e E-commerce
+          </div>
+          <div class="chip"><i class="fas fa-gavel"></i> Advogados</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-content">
+        <img
+          src="logo.png"
+          alt="Contábil Express Logo"
+          style="height: 40px; margin-bottom: 20px; opacity: 0.8"
+        />
+        <p>&copy; 2025 Contábil Express. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <a
+      href="https://wa.me/5500000000000"
+      class="whatsapp-float"
+      target="_blank"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </body>
+</html>
